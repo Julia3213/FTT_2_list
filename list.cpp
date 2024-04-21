@@ -171,3 +171,46 @@ void LinkedList<T>::print() const {
     std::cout << std::endl;
 }
 
+template <typename T>
+bool LinkedList<T>::operator==(const LinkedList<T>& other) const {
+    if (size != other.size) {
+        return false;
+    }
+
+    Node* current1 = head;
+    Node* current2 = other.head;
+
+    while (current1 && current2) {
+        if (current1->data != current2->data) {
+            return false;
+        }
+        current1 = current1->next;
+        current2 = current2->next;
+    }
+
+    return true;
+}
+
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(const LinkedList<T>& other) {
+    if (this == &other) {
+        return *this;
+    }
+
+    while (head) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    tail = nullptr;
+    size = 0;
+
+    Node* current = other.head;
+    while (current) {
+        push_back(current->data);
+        current = current->next;
+    }
+
+    return *this;
+}
+

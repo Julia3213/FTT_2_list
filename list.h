@@ -29,4 +29,6 @@ public:
     LinkedList<T>::Node* end() const;
     int length();
     void print() const;
+    bool operator==(const LinkedList<T>& other) const;
+    LinkedList<T>& operator=(const LinkedList<T>& other);
 };
